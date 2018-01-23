@@ -108,7 +108,7 @@ $(function() {
         });
         it('changes content', function(){
             for (let i = 0; i <= 3; i++) {
-                $('a[data-id='+ i +']').click()
+                $('a[data-id='+ i +']').click();
                 expect($('.feed .entry').length).toBeGreaterThan(0);
                 console.log(i);
             }
