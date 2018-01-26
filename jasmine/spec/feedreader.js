@@ -110,16 +110,18 @@ $(function() {
                     $('a[data-id=' + i + ']').click();
                     feedContent[i] = $('.feed').html();
                     console.log('content assigned', [...feedContent]);
-                    if (i >=3 ) {done()};
+                    if (i >=3) {
+                        done()
+                    }
                 });
-                console.log('done', [...feedContent])
+                console.log('done', [...feedContent]);
             }
             for (let i = 0; i <= 3; i++) {
                 loadFeedLoop(i);
             }
         });
         it('changes content', function() {
-            console.log('expectations', [...feedContent])
+            console.log('expectations', [...feedContent]);
             expect(feedContent[0]).not.toBe(feedContent[1]);
             expect(feedContent[1]).not.toBe(feedContent[2]);
             expect(feedContent[2]).not.toBe(feedContent[3]);
