@@ -111,7 +111,7 @@ $(function() {
                     feedContent[i] = $('.feed').html();
                     console.log('content assigned', [...feedContent]);
                     if (i >=3) {
-                        done()
+                        done();
                     }
                 });
                 console.log('done', [...feedContent]);
