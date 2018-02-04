@@ -103,28 +103,33 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        let feedContent = ['foo'];
+        let feedContent = [];
         beforeEach(function(done) {
-            function loadFeedLoop(i) {
-                loadFeed(i, function() {
-                    $('a[data-id=' + i + ']').click();
-                    feedContent[i] = $('.feed').html();
-                    console.log('content assigned', [...feedContent]);
-                    if (i >=3) {
-                        done();
-                    }
+            // function loadFeedLoop(i) {
+            //     loadFeed(i, function() {
+            //         $('a[data-id=' + i + ']').click();
+            //         feedContent[i] = $('.feed').html();
+            //         console.log('content assigned', [...feedContent]);
+            //         if (i >=3) {
+            //             done();
+            //         }
+            //     });
+            //     console.log('done', [...feedContent]);
+            // }
+            // for (let i = 0; i <= 3; i++) {
+            //     loadFeedLoop(i);
+            // }
+            loadFeed(0, function(){
+                feedContent.push($('.feed').html());
+                loadFeed(1, function(){
+                    feedContent.push($('.feed').html());
+                    done();
                 });
-                console.log('done', [...feedContent]);
-            }
-            for (let i = 0; i <= 3; i++) {
-                loadFeedLoop(i);
-            }
+            });
         });
         it('changes content', function() {
             console.log('expectations', [...feedContent]);
             expect(feedContent[0]).not.toBe(feedContent[1]);
-            expect(feedContent[1]).not.toBe(feedContent[2]);
-            expect(feedContent[2]).not.toBe(feedContent[3]);
         });
 
     });
